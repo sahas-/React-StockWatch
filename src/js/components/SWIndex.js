@@ -2,7 +2,7 @@
 var React = require('react');
 var AppStore = require ('../stores/SWStore.js');
 var AppActions = require('../actions/SWActions.js');
-
+var indexFrndlyName={"INDEXDJX":"DOW","INDEXNASDAQ":"NASDAQ","INDEXSP":"S&P 500"}
 
 
 function getIndices(symbol){
@@ -13,12 +13,11 @@ function getIndices(symbol){
 
 var SWIndexLabel =
   React.createClass({ 
-
     render:function(){
       return(
         <label key={this.props.symbol} 
               className="metro-tile metro-tile-small metro-tile-green">
-              {this.props.item.e}<br/>{this.props.item.l}, {this.props.item.c}
+              {indexFrndlyName[this.props.item.e]}<br/>{this.props.item.l}, {this.props.item.c}
         </label>
       )
     }
@@ -48,7 +47,6 @@ var SWIndex =
         return(
          <span>
           {this.state.indexData.map(function(item){
-          console.log(item);
           return <SWIndexLabel item={item}/>;
           },this)}
          </span>

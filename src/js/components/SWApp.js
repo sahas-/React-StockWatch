@@ -12,6 +12,7 @@ var StockWatchApp =
           <div>
           <SWIndex symbol=".inx"/>
           <SWIndex symbol=".ixic"/>        	
+          <SWIndex symbol=".dji"/>    
           <SWGetSymbol />
           <SWList />
           </div>

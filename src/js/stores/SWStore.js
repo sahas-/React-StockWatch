@@ -35,9 +35,6 @@ var AppStore = merge(EventEmitter.prototype, {
 	getIndices: function(callback){
 		return _indices;
 		},
-	resetIndices:function(callback){
-		_indices=[];
-	},
 
 	dispatcherIndex:AppDispatcher.register(function(payload){
 		var action = payload.action;
@@ -94,7 +91,9 @@ var AppStore = merge(EventEmitter.prototype, {
 				}
 				else{
 					_inList.push(payload.action.item);
+					console.log(_inList)
 					_indices.push(result[0]);
+					console.log(_indices);
 			  		AppStore.emitChange();
 					}
 				});
