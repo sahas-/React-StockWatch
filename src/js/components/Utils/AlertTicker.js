@@ -5,11 +5,11 @@ var _alertRegistry = [];
 
 //mixin??
 var AlertTicker = React.createClass({
-    // propTypes: {
-    //     symbol:React.PropTypes.string.isRequired,
-    //     alertInterval: React.PropTypes.number.isRequired,
-    //     showAlert: React.PropTypes.any.isRequired,
-    // },
+    propTypes: {
+        symbol:React.PropTypes.string.isRequired,
+        alertInterval: React.PropTypes.number.isRequired,
+        showAlert: React.PropTypes.any.isRequired,
+    },
 
     isInAlertRegistry: function(array, search){
         return (array.indexOf(search) >= 0) ? true : false; 
@@ -67,7 +67,7 @@ var AlertTicker = React.createClass({
 
     render: function() {
         return (<td > 
-            {this.props.showAlert?(<b>!!</b>):<span/>}
+            {this.props.showAlert?(<i className="fa fa-exclamation-triangle"></i>):(<i/>)}
             </td>);
     }
 });

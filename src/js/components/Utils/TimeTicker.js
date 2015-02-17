@@ -5,10 +5,10 @@ var _pollRegistry = [];
 
 
 var TimeTicker = React.createClass({
-    // propTypes: {
-    //     symbol:React.PropTypes.string.isRequired,
-    //     pollInterval: React.PropTypes.number.isRequired,
-    // },
+    propTypes: {
+        symbol:React.PropTypes.string.isRequired,
+        pollInterval: React.PropTypes.number.isRequired,
+    },
 
     isInPollRegistry: function(array, search){
         return (array.indexOf(search) >= 0) ? true : false; 

@@ -1,42 +1,54 @@
-.authorimage {
-    height: 340px;
-    width: auto;
+*{
+    font-family: 'Lucida Console' ;  
 }
+.btn{
+   background-color: grey;
+   color:white;
+   margin-left: 10px;
 
-.answer {
-    background-color: #F0F7FD;
-    border-color: #D0E3F0;
-    margin-bottom: 20px;
-    padding: 15px 30px 15px 15px;
-    border-left: 7px solid #D0E3F0;
-    cursor: pointer;
 }
-
-.answer:hover {
-    background-color: #D0E3F0;
+label{
+  padding: 10px;
 }
-
-#footer {
-    margin-top: 60px;
+td,th{
+	width:30%;
+	height: auto;
+    vertical-align: bottom;
+    text-align: center;
 }
-
-.top {
-height: auto !important;
-    margin: 0 auto -60px;
-    min-height: 100%;
-    padding: 0 0 60px;    
+.iconCol{
+	width:5%;
 }
-
-.neutral {
-    height: 340px;
+tr td:last-child {
+    padding-right: 0px;
 }
-
-.pass {
-    background-color: green;
-    height: 340px;
+tr td:first-child {
+    padding-left:0px;
 }
+.metro-tile {
+  background-color: grey;
+  width: 350px; 
+  height: 104px;
+  text-align: center;
+  padding: 5px;
+  color: #FFF;
+  font-size: 12px;
+  border-width: 3px;
+  border-style: solid;
+  cursor: default;
+  border-color: default;
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+.metro-tile-small {
+  width: 190px;
+  height: 50px;
+}
+.metro-tile-red {
+  background-color:#c43c35;
 
-.fail {
-    background-color: red;
-    height: 340px;
+}
+.metro-tile-green {
+  background-color: #46a546;
+
 }

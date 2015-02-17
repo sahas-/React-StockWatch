@@ -12,13 +12,13 @@ function getStockList(){
 }
 
 var SWListItem = React.createClass({
-	// propTypes: {
-	// 	id:React.PropTypes.string.isRequired,
-	// 	symbol:React.PropTypes.string.isRequired,
-	// 	lastPrice:React.PropTypes.string.isRequired,
-	// 	change:React.PropTypes.string.isRequired,
-	// 	start:React.PropTypes.any.isRequired,
-	// },
+	propTypes: {
+		id:React.PropTypes.string.isRequired,
+		symbol:React.PropTypes.string.isRequired,
+		lastPrice:React.PropTypes.string.isRequired,
+		change:React.PropTypes.string.isRequired,
+		start:React.PropTypes.any.isRequired,
+	},
 
 	handleClick: function(){
 		this.props.onStockSelected(this.props.symbol);
@@ -36,6 +36,7 @@ var SWListItem = React.createClass({
 	render: function(){
 		return (
 		<tr key={this.props.id}>
+            <td className="iconCol"><i className="fa fa-trash-o"></i></td>
         	<td onClick={this.handleClick}>{this.props.symbol}</td>
         	<td>{this.props.lastPrice}</td>
         	<td className={this.props.change>0?'success':'danger'}>{this.props.change}</td> 
@@ -60,10 +61,10 @@ var SWList = React.createClass({
     	return getStockList();
     },
     componentWillMount:function(){
-      AppStore.addChangeListener(this._onChange)
+      AppStore.addChangeListener(this._onChange);
     },
     _onChange:function(){
-      this.setState(getStockList())
+      this.setState(getStockList());
     },
     handleStockSelected: function(item){
     	console.log("received the event @ parent for symbol: "+item);
@@ -75,10 +76,11 @@ var SWList = React.createClass({
 			  <table className="table table-hover table-responsive col-md-6">
 			    <thead>
 				    <tr>
+                        <th className="iconCol"></th>
                 		<th>Symbol</th>
                 		<th>Last Price ($)</th>
                 		<th>Change ($)</th>
-                		<th></th>
+                		<th className="iconCol"></th>
                 		<tbody>
 							{this.state.items.map(function(item){
 								return <SWListItem onStockSelected={this.handleStockSelected} 

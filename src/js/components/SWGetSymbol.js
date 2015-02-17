@@ -11,14 +11,17 @@ var SWGetSymbol =
     render:function(){
       return (
         <div className="form-group input-group col-sm-7">
+          <br/>
+          <label>Search</label>
           <input ref='txtsymbol' 
             type="text" 
             className="input-medium search-query" 
-            placeholder="Input Symbol for search .." 
-            defaultValue="SBUX"></input>
+            defaultValue="SBUX"
+            tabIndex="1"></input>
           <button type="button" 
             className="btn" 
-            onClick={this.handleClick}>Submit</button>
+            tabIndex="2"
+            onClick={this.handleClick}>Add</button>
         </div>
   	   );
     }

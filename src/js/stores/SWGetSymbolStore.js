@@ -1,10 +1,10 @@
 var request = require('request');
 
-var GetSymbol = function(item,cb){
+var GetSymbol = function(index,item,cb){
 var result=[];
 request({
 	method:'get',
-	url:'http://finance.google.com/finance/info?q=NYSE:'+item}, 
+	url:'http://finance.google.com/finance/info?q='+index+':'+item}, 
 	function (error, response, body) {
 		if (error){
 			result=error;

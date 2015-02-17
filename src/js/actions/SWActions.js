@@ -14,6 +14,13 @@ var AppActions={
 			item:item
 		})
 	},
+	getIndices:function(item){
+		AppDispatcher.handleViewAction({
+			actionType:AppConstants.GET_INDEX,
+			item:item
+		})
+	},
+
 	updateSymbol:function(item){
 		AppDispatcher.handleViewAction({
 			actionType:AppConstants.UPDATE_SYMBOL,

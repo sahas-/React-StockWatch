@@ -9,35 +9,42 @@ var CHANGE_EVENT="change";
 
 var _stockitems = [];
 var _inList=[];
+var _indices=[];
 
 var AppStore = merge(EventEmitter.prototype, {
 	emitChange: function(){
 		this.emit(CHANGE_EVENT);
-	},
+		},
     /**
     * @param {function} callback
     */
     addChangeListener: function(callback) {
     	this.on(CHANGE_EVENT,callback);
-  	},
+  		},
     /**
     * @param {function} callback
     */
     removeChangeListener: function(callback) {
     	this.removeListener(CHANGE_EVENT, callback);
-    },
+    	},
 
 	getStockList: function(callback){
 		return _stockitems;
-	},
+		},
 
+	getIndices: function(callback){
+		return _indices;
+		},
+	resetIndices:function(callback){
+		_indices=[];
+	},
 
 	dispatcherIndex:AppDispatcher.register(function(payload){
 		var action = payload.action;
 		switch (action.actionType){
 			case AppConstants.GET_SYMBOL:
-			if(_inList.indexOf(payload.action.item) == -1){
-				GetSymbol(payload.action.item, function(result){
+				if(_inList.indexOf(payload.action.item) == -1){
+				GetSymbol("NYSE",payload.action.item, function(result){
 				if (result.length !=1){
 					console.log('something wrong - get symbol failed !!');
 				}
@@ -48,11 +55,11 @@ var AppStore = merge(EventEmitter.prototype, {
 			  		AppStore.emitChange();
 				}
 				});
-			}
-			break;
+				}
+				break;
 
 			case AppConstants.UPDATE_SYMBOL:
-				GetSymbol(payload.action.item, function(result){
+				GetSymbol("NYSE",payload.action.item, function(result){
 				if (result.length !=1){
 					console.log('something wrong - get symbol failed !!');
 				}
@@ -78,13 +85,28 @@ var AppStore = merge(EventEmitter.prototype, {
 				AppStore.emitChange();
 				break;
 
-		}
+
+			case AppConstants.GET_INDEX:
+				if(_inList.indexOf(payload.action.item) == -1){
+				GetSymbol("NYSE",payload.action.item, function(result){
+				if (result.length !=1){
+					console.log('something wrong - get symbol failed !!');
+				}
+				else{
+					_inList.push(payload.action.item);
+					_indices.push(result[0]);
+			  		AppStore.emitChange();
+					}
+				});
+				}
+				break;				
+
 		return true;
 
-		})
+		}
 
 })
-
+});
 
 module.exports = AppStore;
 
