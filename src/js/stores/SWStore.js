@@ -84,24 +84,21 @@ var AppStore = merge(EventEmitter.prototype, {
 
 
 			case AppConstants.GET_INDEX:
-				if(_inList.indexOf(payload.action.item) == -1){
-				GetSymbol("NYSE",payload.action.item, function(result){
-				if (result.length !=1){
-					console.log('something wrong - get symbol failed !!');
-				}
-				else{
-					_inList.push(payload.action.item);
-					console.log(_inList)
-					_indices.push(result[0]);
-					console.log(_indices);
-			  		AppStore.emitChange();
+				var _INDICES=['.inx','.ixic','.dji'];
+				_INDICES.forEach(function(myindex){
+					GetSymbol("NYSE",myindex, function(result){
+					if (result.length !=1){
+						console.log('something wrong - get symbol failed !!');
 					}
-				});
-				}
+					else{
+						_indices.push(result[0]);
+						AppStore.emitChange();
+						}
+					});
+				})
 				break;				
 
 		return true;
-
 		}
 
 })

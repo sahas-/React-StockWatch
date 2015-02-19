@@ -17,7 +17,6 @@ var AppActions={
 	getIndices:function(item){
 		AppDispatcher.handleViewAction({
 			actionType:AppConstants.GET_INDEX,
-			item:item
 		})
 	},
 

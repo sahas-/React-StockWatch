@@ -26,13 +26,13 @@ tr td:first-child {
     padding-left:0px;
 }
 .metro-tile {
-  background-color: grey;
+  background-color: #00FF00;
   width: 350px; 
   height: 104px;
   text-align: center;
   padding: 5px;
   color: #FFF;
-  font-size: 12px;
+  font-size: 14px;
   border-width: 3px;
   border-style: solid;
   cursor: default;

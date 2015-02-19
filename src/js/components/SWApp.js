@@ -10,9 +10,7 @@ var StockWatchApp =
     render:function(){
       return (
           <div>
-          <SWIndex symbol=".inx"/>
-          <SWIndex symbol=".ixic"/>        	
-          <SWIndex symbol=".dji"/>    
+          <SWIndex /> 
           <SWGetSymbol />
           <SWList />
           </div>

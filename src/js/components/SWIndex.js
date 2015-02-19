@@ -4,54 +4,52 @@ var AppStore = require ('../stores/SWStore.js');
 var AppActions = require('../actions/SWActions.js');
 var indexFrndlyName={"INDEXDJX":"DOW","INDEXNASDAQ":"NASDAQ","INDEXSP":"S&P 500"}
 
-
-function getIndices(symbol){
+function getIndices(){
     return{
-    indexData:AppStore.getIndices(symbol)
+    indexData:AppStore.getIndices()
     }
 }
 
-var SWIndexLabel =
-  React.createClass({ 
-    render:function(){
-      return(
-        <label key={this.props.symbol} 
-              className="metro-tile metro-tile-small metro-tile-green">
-              {indexFrndlyName[this.props.item.e]}<br/>{this.props.item.l}, {this.props.item.c}
-        </label>
-      )
-    }
+var ObjectRow =
+  React.createClass({
+
+  render:function(){
+    return(
+      <label key={this.props.item.id} className={this.props.item.c>0?'metro-tile metro-tile-small metro-tile-green':'metro-tile metro-tile-small metro-tile-red'}>
+      {indexFrndlyName[this.props.item.e]}<br/>{this.props.item.l}, {this.props.item.c}
+      </label>
+      )}
   });
-module.exports=SWIndexLabel;
+
+module.exports=ObjectRow;
 
 var SWIndex =
   React.createClass({
-    propTypes: {
-        symbol:React.PropTypes.string.isRequired,
-      },   
+   
     getInitialState:function(){
-      AppActions.getIndices(this.props.symbol);
-      return getIndices(this.props.symbol);
+      AppActions.getIndices();
+      return getIndices();
       },
     _onChange:function(){
-      this.setState(getIndices(this.props.symbol));
+        getIndices();
+        if(this.state.indexData.length==3){
+          this.setState(getIndices());
+        }
       },
     componentWillMount:function(){
       AppStore.addChangeListener(this._onChange);
       },
-    render:function(){         
-        if(this.state.indexData.length==0){
-          return (<label>"no data"</label>);
+    render:function(){ 
+        if(typeof this.state.indexData === 'undefined' || (this.state.indexData=='') || (this.state.indexData==null)){
+          return (<label>"no data yet"</label>);
         }
         else{
-        return(
-         <span>
-          {this.state.indexData.map(function(item){
-          return <SWIndexLabel item={item}/>;
-          },this)}
-         </span>
-         )
+          var rows = [];
+          for (var i=0; i < this.state.indexData.length; i++) {
+            rows.push(<ObjectRow item={this.state.indexData[i]}/>);
+          }
+          return (<div>{rows}</div>)
         }
-      }
+        }
 });
 module.exports = SWIndex;
