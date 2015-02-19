@@ -45,9 +45,9 @@ var SWIndex =
         }
         else{
           var rows = [];
-          for (var i=0; i < this.state.indexData.length; i++) {
-            rows.push(<ObjectRow item={this.state.indexData[i]}/>);
-          }
+          this.state.indexData.map(function(rowItem){
+            rows.push(<ObjectRow item={rowItem}/>);
+          })
           return (<div>{rows}</div>)
         }
         }
