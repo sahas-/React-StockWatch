@@ -32,9 +32,7 @@ var SWIndex =
       },
     _onChange:function(){
         getIndices();
-        if(this.state.indexData.length==3){
-          this.setState(getIndices());
-        }
+        this.setState(getIndices());
       },
     componentWillMount:function(){
       AppStore.addChangeListener(this._onChange);

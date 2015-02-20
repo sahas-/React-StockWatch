@@ -2,7 +2,7 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var AppConstants = require('../constants/SWConstants');
 var merge =require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
-var GetSymbol = require('./SWGetSymbolStore');
+var SymbolStore = require('./SWGetSymbolStore');
 
 
 var CHANGE_EVENT="change";
@@ -36,27 +36,34 @@ var AppStore = merge(EventEmitter.prototype, {
 		return _indices;
 		},
 
+	getInList: function(callback){
+		return _inList;
+		},
+
 	dispatcherIndex:AppDispatcher.register(function(payload){
 		var action = payload.action;
 		switch (action.actionType){
 			case AppConstants.GET_SYMBOL:
 				if(_inList.indexOf(payload.action.item) == -1){
-				GetSymbol("NYSE",payload.action.item, function(result){
+				SymbolStore.GetSymbol("NASDAQ",payload.action.item, function(result){
 				if (result.length !=1){
 					console.log('something wrong - get symbol failed !!');
 				}
 				else{
 					_inList.push(payload.action.item);
 					result[0].showAlert=false;
-					_stockitems.push(result[0]);
-			  		AppStore.emitChange();
+					SymbolStore.GetSymbolMatchingName("NASDAQ",payload.action.item,function(name){
+						result[0].name=name;
+						_stockitems.push(result[0]);
+				  		AppStore.emitChange();
+					});
 				}
 				});
 				}
 				break;
 
 			case AppConstants.UPDATE_SYMBOL:
-				GetSymbol("NYSE",payload.action.item, function(result){
+				SymbolStore.GetSymbol("NASDAQ",payload.action.item, function(result){
 				if (result.length !=1){
 					console.log('something wrong - get symbol failed !!');
 				}
@@ -86,7 +93,7 @@ var AppStore = merge(EventEmitter.prototype, {
 			case AppConstants.GET_INDEX:
 				var _INDICES=['.inx','.ixic','.dji'];
 				_INDICES.forEach(function(myindex){
-					GetSymbol("NYSE",myindex, function(result){
+					SymbolStore.GetSymbol("NASDAQ",myindex, function(result){
 					if (result.length !=1){
 						console.log('something wrong - get symbol failed !!');
 					}

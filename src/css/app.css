@@ -11,10 +11,16 @@ label{
   padding: 10px;
 }
 td,th{
-	width:30%;
+	width:20%;
 	height: auto;
-    vertical-align: bottom;
-    text-align: center;
+  vertical-align: bottom;
+  text-align: left;
+}
+.nameCol{
+  width: 40%;
+}
+.symbolCol{
+  width:10%;
 }
 .iconCol{
 	width:5%;
@@ -46,9 +52,7 @@ tr td:first-child {
 }
 .metro-tile-red {
   background-color:#c43c35;
-
-}
+  }
 .metro-tile-green {
   background-color: #46a546;
-
-}
+  }

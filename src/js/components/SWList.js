@@ -37,7 +37,8 @@ var SWListItem = React.createClass({
 		return (
 		<tr key={this.props.id}>
             <td className="iconCol"><i className="fa fa-trash-o"></i></td>
-        	<td onClick={this.handleClick}>{this.props.symbol}</td>
+        	<td className="symbolCol" onClick={this.handleClick}>{this.props.symbol}</td>
+            <td className="nameCol">{this.props.name}</td>
         	<td>{this.props.lastPrice}</td>
         	<td className={this.props.change>0?'success':'danger'}>{this.props.change}</td> 
     		<TimeTicker 
@@ -77,7 +78,8 @@ var SWList = React.createClass({
 			    <thead>
 				    <tr>
                         <th className="iconCol"></th>
-                		<th>Symbol</th>
+                		<th className="symbolCol">Symbol</th>
+                        <th className="nameCol">Name</th>
                 		<th>Last Price ($)</th>
                 		<th>Change ($)</th>
                 		<th className="iconCol"></th>
@@ -87,6 +89,7 @@ var SWList = React.createClass({
 								key={item.id} 
 								id={item.id} 
 								symbol={item.t}
+                                name={item.name}
 								lastPrice={item.l}
 								change={item.c}
 								start={new Date()}
