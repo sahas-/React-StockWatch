@@ -14,17 +14,23 @@ label{
 td,th{
 	width:20%;
 	height: auto;
-  vertical-align: bottom;
+  vertical-align: middle;
   text-align: left;
 }
 .nameCol{
-  width: 40%;
+  width: 20%;
+  vertical-align: middle;
 }
 .symbolCol{
   width:5%;
+  vertical-align: middle;
+  font-size: 20px;
 }
 .iconCol{
 	width:5%;
+  vertical-align: middle;
+  font-size: 20px;
+  text-align: center;
 }
 
 tr td:last-child {

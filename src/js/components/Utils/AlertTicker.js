@@ -66,9 +66,10 @@ var AlertTicker = React.createClass({
     },
 
     render: function() {
-        return (<td > 
+
+        return (<span><small>
             {this.props.showAlert?(<i className="fa fa-exclamation-triangle"></i>):(<i/>)}
-            </td>);
+            </small></span>);
     }
 });
 

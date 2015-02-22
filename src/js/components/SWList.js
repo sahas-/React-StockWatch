@@ -36,20 +36,31 @@ var SWListItem = React.createClass({
 	render: function(){
 		return (
 		<tr key={this.props.id}>
-            <td className="iconCol"><i className="fa fa-trash-o"></i></td>
-        	<td className={this.props.change>0?'changeCol-green symbolCol':'changeCol-red symbolCol'} onClick={this.handleClick}>{this.props.symbol}</td>
-            <td className="nameCol">{this.props.name}</td>
-        	<td>{this.props.lastPrice}</td>
-        	<td>{this.props.change}</td> 
-    		<TimeTicker 
+
+            <td className="iconCol">
+                <br/>
+                <i className="fa fa-trash-o"></i>
+            </td>
+        	<td className={this.props.change>0?'symbolCol changeCol-green':'symbolCol changeCol-red'} 
+                onClick={this.handleClick}>
+                <br/>
+                {this.props.symbol}
+                <br/>
+                <AlertTicker
+                   symbol={this.props.symbol}
+                   showAlert={this.props.showAlert}
+                   alertInterval={5000}
+                   OnScreenAlert={this.handleOnScreenAlert} />                
+            </td>
+            <td className="nameCol">
+                <small>{this.props.name}</small>           
+                <br/><h2>{this.props.lastPrice},{this.props.change}</h2>
+            </td>
+		    <TimeTicker 
     			symbol={this.props.symbol}         	
     			pollInterval={10000}
     			OnInterval={this.handleIntervalReached} />
-    		<AlertTicker
-    			symbol={this.props.symbol}
-    			showAlert={this.props.showAlert}
-    			alertInterval={5000}
-    			OnScreenAlert={this.handleOnScreenAlert} />
+
 		</tr>
         )
 	}
@@ -72,17 +83,12 @@ var SWList = React.createClass({
     },
 	render: function() {
 		return(
-			<div className="panel panel-default col-md-6">
-			  <div className="panel-heading"><b>List</b></div>
-			  <table className="table table-hover table-responsive col-md-6">
+			  <table className="table table-hover .col-xs-6.col-md-4">
 			    <thead>
 				    <tr>
-                        <th className="iconCol"></th>
-                		<th className="symbolCol">Symbol</th>
-                        <th className="nameCol">Name</th>
-                		<th>Last Price ($)</th>
-                		<th>Change ($)</th>
-                		<th className="iconCol"></th>
+                        <th className="iconCol"/>
+                		<th className="symbolCol"></th>
+                        <th className="nameCol"></th>
                 		<tbody>
 							{this.state.items.map(function(item){
 								return <SWListItem onStockSelected={this.handleStockSelected} 
@@ -92,15 +98,14 @@ var SWList = React.createClass({
                                 name={item.name}
 								lastPrice={item.l}
 								change={item.c}
-								start={new Date()}
-								showAlert={item.showAlert}/>;
+								start={new Date()} 
+                                showAlert={item.showAlert}/>;
 							},this)}
 
             			</tbody>
               		</tr>
             		</thead>
 			  </table>
-			</div>
 		)}
 });
 
