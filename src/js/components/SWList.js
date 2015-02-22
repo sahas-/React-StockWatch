@@ -37,10 +37,10 @@ var SWListItem = React.createClass({
 		return (
 		<tr key={this.props.id}>
             <td className="iconCol"><i className="fa fa-trash-o"></i></td>
-        	<td className="symbolCol" onClick={this.handleClick}>{this.props.symbol}</td>
+        	<td className={this.props.change>0?'changeCol-green symbolCol':'changeCol-red symbolCol'} onClick={this.handleClick}>{this.props.symbol}</td>
             <td className="nameCol">{this.props.name}</td>
         	<td>{this.props.lastPrice}</td>
-        	<td className={this.props.change>0?'success':'danger'}>{this.props.change}</td> 
+        	<td>{this.props.change}</td> 
     		<TimeTicker 
     			symbol={this.props.symbol}         	
     			pollInterval={10000}

@@ -1,3 +1,4 @@
+
 *{
     font-family: 'Lucida Console' ;  
 }
@@ -20,11 +21,12 @@ td,th{
   width: 40%;
 }
 .symbolCol{
-  width:10%;
+  width:5%;
 }
 .iconCol{
 	width:5%;
 }
+
 tr td:last-child {
     padding-right: 0px;
 }
@@ -51,8 +53,14 @@ tr td:first-child {
   height: 50px;
 }
 .metro-tile-red {
-  background-color:#c43c35;
-  }
+  background-color: #CC3300
+}
 .metro-tile-green {
-  background-color: #46a546;
-  }
+  background-color: #009933
+}
+.changeCol-green{
+  border-left: 0.8em solid #009933
+}
+.changeCol-red{
+  border-left: 0.8em solid #CC3300
+}
