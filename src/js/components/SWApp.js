@@ -2,17 +2,18 @@
 
 var React = require('react');
 var SWGetSymbol = require('./SWGetSymbol');
-var SWList = require('./SWList');
+var SWCategorizedList = require('./SWList');
 var SWIndex=require('./SWIndex');
+//var SWFavCloud = require('./SWFavCloud');
 
 var StockWatchApp =
   React.createClass({
     render:function(){
       return (
           <div>
-          <SWIndex /> 
-          <SWGetSymbol />
-          <SWList />
+            <SWIndex /> 
+            <SWGetSymbol />
+            <SWCategorizedList />
           </div>
       	)
     }

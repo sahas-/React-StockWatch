@@ -3,7 +3,7 @@ var AppConstants = require('../constants/SWConstants');
 var merge =require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
 var SymbolStore = require('./SWGetSymbolStore');
-
+var underscore = require('underscore');
 
 var CHANGE_EVENT="change";
 
@@ -29,7 +29,7 @@ var AppStore = merge(EventEmitter.prototype, {
     	},
 
 	getStockList: function(callback){
-		return _stockitems;
+		return underscore.groupBy(_stockitems,'category');
 		},
 
 	getIndices: function(callback){
@@ -54,8 +54,9 @@ var AppStore = merge(EventEmitter.prototype, {
 					result[0].showAlert=false;
 					SymbolStore.GetSymbolMatchingName("NASDAQ",payload.action.item,function(name){
 						result[0].name=name;
+						result[0].category='category ' + underscore.random(1,4);
 						_stockitems.push(result[0]);
-				  		AppStore.emitChange();
+        				AppStore.emitChange();
 					});
 				}
 				});
@@ -71,7 +72,7 @@ var AppStore = merge(EventEmitter.prototype, {
 					_stockitems.map(function(item){
 						if(result[0].t == item.t){
 							item.l=result[0].l;//Math.random()*Math.random()*4;
-							item.ec=result[0].c;//Math.random();//result[0].c;
+							item.c=result[0].c;//Math.random();//result[0].c;
 							item.showAlert=true;
 						}
 					});

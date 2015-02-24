@@ -10,12 +10,13 @@
 }
 label{
   padding: 10px;
+
 }
-td,th{
-	width:20%;
-	height: auto;
-  vertical-align: middle;
-  text-align: left;
+.table
+{
+  width:50%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .nameCol{
   width: 20%;
@@ -69,4 +70,7 @@ tr td:first-child {
 }
 .changeCol-red{
   border-left: 0.8em solid #CC3300
+}
+.groupHeader{
+  color:#6600CC;
 }
