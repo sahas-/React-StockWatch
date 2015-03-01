@@ -5,14 +5,13 @@ var EventEmitter = require('events').EventEmitter;
 var SymbolStore = require('./SWGetSymbolStore');
 var FilterStore = require ('./SWFilterStore');
 var underscore = require('underscore');
-var Immutable =require('Immutable');
 
 var CHANGE_EVENT="change";
 
 var _stockitems = [];
 var _inList=[];
 var _indices=[];
-var _originalStockList = [];//Immutable.Map(_stockitems);
+var _originalStockList = [];
 
 
 var AppStore = merge(EventEmitter.prototype, {
@@ -46,6 +45,7 @@ var AppStore = merge(EventEmitter.prototype, {
 
 	updateStockListWithFilterCriteria:function(searchString){
 		_originalStockList = _stockitems;
+		//check for null here
 		_stockitems = FilterStore.getStockListWithFilterCriteria(_stockitems,searchString);
 		},
 	resetSymbolsToOriginalStockList: function(){
