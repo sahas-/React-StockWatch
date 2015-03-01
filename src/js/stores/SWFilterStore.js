@@ -1,4 +1,3 @@
-var Immutable = require('Immutable');
 var underscore = require('underscore');
 
 var getStockListWithFilterCriteria= function(_stocklist, searchString){
