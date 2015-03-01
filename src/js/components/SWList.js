@@ -6,12 +6,8 @@ var AppActions = require('../actions/SWActions.js');
 var TimeTicker = require('./utils/TimeTicker');
 var AlertTicker = require('./utils/AlertTicker');
 var underscore = require('underscore');
+var getStockList = require('../mixins/getStockListMixin.js');
 
-
-function getStockList(){
-return{
-	items:AppStore.getStockList()}
-    }
 
 var SWListItem = React.createClass({
 	propTypes: {
@@ -67,6 +63,8 @@ var SWListItem = React.createClass({
 });
 
 var SWCategorizedList = React.createClass({
+    mixins: [getStockList],
+
     getInitialState:function(){
         return getStockList();
         },
@@ -83,10 +81,9 @@ var SWCategorizedList = React.createClass({
         }
         else{
             var cat=[];
-
             for (var key in this.state.items) {
                var obj = this.state.items[key];
-               cat.push(<h4 className="groupHeader">{key}</h4>);
+               cat.push(<h4>{key}</h4>);
                for (var prop in obj) {
                 cat.push(<SWList item={obj[prop]}/>)
                }
@@ -107,20 +104,20 @@ var SWList = React.createClass({
     },
 	render: function() {
 		return(
+            <div>
 			  <table className="table table-hover .col-xs-6.col-md-4">
-
-                		<tbody>
-								return <SWListItem onStockSelected={this.handleStockSelected} 
-								key={this.props.item.id} 
-								id={this.props.item.id} 
-								symbol={this.props.item.t}
-                                name={this.props.item.name}
-								lastPrice={this.props.item.l}
-								change={this.props.item.c}
-								start={new Date()} 
-                                showAlert={this.props.item.showAlert}/>;
-            			</tbody>
-
+        		<tbody>
+    					<SWListItem onStockSelected={this.handleStockSelected} 
+    					key={this.props.item.id} 
+    					id={this.props.item.id} 
+    					symbol={this.props.item.t}
+                        name={this.props.item.name}
+    					lastPrice={this.props.item.l}
+    					change={this.props.item.c}
+    					start={new Date()} 
+                        showAlert={this.props.item.showAlert}/>
+    			</tbody>
 			  </table>
+            </div>
 		)}
 });

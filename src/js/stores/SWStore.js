@@ -3,13 +3,17 @@ var AppConstants = require('../constants/SWConstants');
 var merge =require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
 var SymbolStore = require('./SWGetSymbolStore');
+var FilterStore = require ('./SWFilterStore');
 var underscore = require('underscore');
+var Immutable =require('Immutable');
 
 var CHANGE_EVENT="change";
 
 var _stockitems = [];
 var _inList=[];
 var _indices=[];
+var _originalStockList = [];//Immutable.Map(_stockitems);
+
 
 var AppStore = merge(EventEmitter.prototype, {
 	emitChange: function(){
@@ -38,6 +42,14 @@ var AppStore = merge(EventEmitter.prototype, {
 
 	getInList: function(callback){
 		return _inList;
+		},
+
+	updateStockListWithFilterCriteria:function(searchString){
+		_originalStockList = _stockitems;
+		_stockitems = FilterStore.getStockListWithFilterCriteria(_stockitems,searchString);
+		},
+	resetSymbolsToOriginalStockList: function(){
+		_stockitems=underscore.union(_stockitems,_originalStockList);
 		},
 
 	dispatcherIndex:AppDispatcher.register(function(payload){
@@ -90,7 +102,6 @@ var AppStore = merge(EventEmitter.prototype, {
 				AppStore.emitChange();
 				break;
 
-
 			case AppConstants.GET_INDEX:
 				var _INDICES=['.inx','.ixic','.dji'];
 				_INDICES.forEach(function(myindex){
@@ -106,6 +117,14 @@ var AppStore = merge(EventEmitter.prototype, {
 				})
 				break;				
 
+			case AppConstants.FILTER_SYMBOLSLIST:
+				AppStore.updateStockListWithFilterCriteria(action.item);
+				AppStore.emitChange();
+				break;
+			case AppConstants.RESET_SYMBOLSLIST:
+				AppStore.resetSymbolsToOriginalStockList();
+				AppStore.emitChange();
+				break;
 		return true;
 		}
 
@@ -113,6 +132,8 @@ var AppStore = merge(EventEmitter.prototype, {
 });
 
 module.exports = AppStore;
+
+    
 
 
 

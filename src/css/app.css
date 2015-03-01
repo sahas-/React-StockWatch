@@ -19,19 +19,19 @@ label{
   padding-bottom: 0px;
 }
 .nameCol{
+  width: 50%;
   width: 20%;
-  vertical-align: middle;
+  text-align: center;
 }
 .symbolCol{
   width:5%;
-  vertical-align: middle;
+  text-align: center;
   font-size: 20px;
 }
+
 .iconCol{
 	width:5%;
-  vertical-align: middle;
   font-size: 20px;
-  text-align: center;
 }
 
 tr td:last-child {
@@ -65,6 +65,7 @@ tr td:first-child {
 .metro-tile-green {
   background-color: #009933
 }
+
 .changeCol-green{
   border-left: 0.8em solid #009933
 }

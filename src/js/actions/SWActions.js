@@ -31,6 +31,17 @@ var AppActions={
 			actionType:AppConstants.ONSCREEN_ALERT,
 			item:item
 		})		
+	},
+	filterSymbols: function(item){
+		AppDispatcher.handleViewAction({
+			actionType: AppConstants.FILTER_SYMBOLSLIST,
+			item:item
+		})
+	},
+	resetSymbolsListToOriginal: function(){
+		AppDispatcher.handleViewAction({
+			actionType: AppConstants.RESET_SYMBOLSLIST
+		})
 	}
 	
 };
