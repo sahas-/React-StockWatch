@@ -1,2 +1,2 @@
-'npm install'
-gulp
+npm install --save-dev;
+gulp;
