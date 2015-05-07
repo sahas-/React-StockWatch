@@ -9,6 +9,7 @@ var underscore = require('underscore');
 var getStockList = require('../mixins/getStockListMixin.js');
 
 
+
 var SWListItem = React.createClass({
 	propTypes: {
 		id:React.PropTypes.string.isRequired,
@@ -63,8 +64,9 @@ var SWListItem = React.createClass({
 });
 
 var SWCategorizedList = React.createClass({
-    mixins: [getStockList],
 
+    mixins: [getStockList],
+    
     getInitialState:function(){
         return getStockList();
         },
@@ -81,6 +83,7 @@ var SWCategorizedList = React.createClass({
         }
         else{
             var cat=[];
+
             for (var key in this.state.items) {
                var obj = this.state.items[key];
                cat.push(<h4>{key}</h4>);
@@ -90,7 +93,9 @@ var SWCategorizedList = React.createClass({
 
             }
 
-            return(<div>{cat}</div>);
+            return(<div>
+                {cat}
+                </div>);
         }
     }
 
