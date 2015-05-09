@@ -20,6 +20,8 @@ gulp.task('copy',['clean-scripts'],function() {
       .pipe(gulp.dest('dist'));
     gulp.src('src/css/*')
       .pipe(gulp.dest('dist/css'));
+    gulp.src('src/js/E-ETests/*')
+      .pipe(gulp.dest('dist/E-ETests'));
 });
 
 gulp.task('default',['browserify', 'copy']);
