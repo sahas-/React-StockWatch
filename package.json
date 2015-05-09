@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "es6-promise": "^1.0.0",
-    "immutable": "latest"
+    "protractor": "latest"
   },
   "scripts": {
     "test": "jest"
